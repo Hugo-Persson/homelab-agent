@@ -18,7 +18,7 @@ read -s KEY
 echo
 
 # Create bezel.env file or overwrite existing one
-echo "KEY=$KEY" >./beszel.env
+echo "KEY=\"'$KEY'\"" >./beszel.env
 
 # Ensure permissions are secure
 chmod 600 ./beszel.env
