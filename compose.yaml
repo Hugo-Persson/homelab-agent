@@ -35,7 +35,7 @@ services:
       ## Adding IP here will ensure calling IP is in the list. (optional)
       PERIPHERY_ALLOWED_IPS:
       ## Enable HTTPS server
-      PERIPHERY_SSL_ENABLED: false
+      PERIPHERY_SSL_ENABLED: true
       ## If the disk size is overreporting, can use one of these to
       ## whitelist / blacklist the disks to filter them, whichever is easier.
       ## Accepts comma separated list of paths.
