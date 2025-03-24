@@ -11,17 +11,3 @@ echo "$PASSKEY" >./PASSKEY
 chmod 600 ./PASSKEY
 
 echo "PASSKEY has been saved securely."
-
-#
-echo -n "Enter your BEZEL key: "
-read -s KEY
-echo
-
-# Create bezel.env file or overwrite existing one
-echo "KEY=\"'$KEY'\"" >./beszel.env
-
-# Ensure permissions are secure
-chmod 600 ./beszel.env
-
-echo "BEZEL key has been saved to bezel.env"
-
