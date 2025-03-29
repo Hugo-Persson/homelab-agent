@@ -23,7 +23,6 @@ services:
       - repos:/etc/komodo/repos
       ## manage stack files in a docker volume,
       ## or change it to an accessible host directory.
-      - ./stacks:/etc/komodo/stacks
       - ${PWD}/stacks:${PWD}/stacks
       - ./PASSKEY:/etc/komodo/PASSKEY
       ## Optionally mount a path to store compose files
