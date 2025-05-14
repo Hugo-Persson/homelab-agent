@@ -41,6 +41,32 @@ services:
       # PERIPHERY_EXCLUDE_DISK_MOUNTS: /snap,/etc/repos
       PERIPHERY_STACK_DIR: "${PWD}/stacks"
 
+      version: "3.9"
+
+  docker-socket-proxy:
+    image: lscr.io/linuxserver/socket-proxy:latest
+    container_name: docker-socket-proxy
+    restart: unless-stopped
+    environment:
+      # Global read-only – disables every HTTP verb except GET/HEAD
+      - POST=0
+      # Only turn on the endpoints Uptime Kuma needs
+      - CONTAINERS=1 # /containers/*  (list + stats)
+      - EVENTS=1 # optional, for real-time events
+      - VERSION=1 # /version ping
+      - PING=1 # /_ping health-check
+      - AUTH=1
+      - USERNAME=kumamon
+      - PASSWORD=${SOCKET_PROXY_PASS}
+      # Everything else stays at the default 0 (disabled)
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro # mount host socket read-only
+    read_only: true
+    tmpfs:
+      - /run # writeable scratch
+    ports:
+      - "${SOCKET_PORT}:2375"
+
 volumes:
   ssl-certs:
   repos:
